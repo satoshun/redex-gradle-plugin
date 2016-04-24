@@ -1,0 +1,4 @@
+rootProject.name = 'redex-gradle-plugin'
+
+// for debug
+// include ':example'

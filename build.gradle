@@ -1,0 +1,95 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'org.gradle.api.plugins:gradle-nexus-plugin:0.3'
+    }
+}
+
+apply plugin: 'groovy'
+apply plugin: 'nexus'
+
+
+group = 'com.github.satoshun.redex.gradle'
+version = '0.1.30-SNAPSHOT'
+
+
+repositories {
+    mavenCentral()
+    mavenLocal()
+}
+
+sourceCompatibility = 1.6
+targetCompatibility = 1.6
+
+
+subprojects {
+    buildscript {
+        repositories {
+            jcenter()
+        }
+    }
+
+    repositories {
+        jcenter()
+    }
+}
+
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    compile 'com.android.tools.build:gradle:2.0.0'
+
+    testCompile 'junit:junit:4.12'
+}
+
+
+jar {
+  manifest {
+    attributes 'Implementation-Title' : 'Gradle plugin for Redex',
+        'Implementation-Version': version,
+        'Built-By' : System.getProperty('user.name'),
+        'Built-Date' : new Date(),
+        'Built-JDK' : System.getProperty('java.version'),
+        'Built-Gradle' : gradle.gradleVersion
+    }
+}
+
+
+modifyPom {
+    project {
+        name 'Redex Gradle Plugin'
+        description 'Gradle plugin for Redex'
+        url 'https://github.com/satoshun/redex-gradle-plugin'
+        inceptionYear '2016'
+
+        scm {
+            url 'https://github.com/satoshun/redex-gradle-plugin'
+            connection 'scm:git:git@github.com:satoshun/redex-gradle-plugin.git'
+            developerConnection 'scm:git:git@github.com:satoshun/redex-gradle-plugin.git'
+        }
+
+        licenses {
+            license {
+                name 'The Apache Software License, Version 2.0'
+                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                distribution 'repo'
+            }
+        }
+
+        developers {
+            developer {
+                id 'satoshun'
+                name 'Sato Shun'
+                email 'shun.sato1@gmail.com'
+            }
+        }
+    }
+}
+
+nexus {
+     sign = true
+}
