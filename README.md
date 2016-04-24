@@ -1,9 +1,10 @@
-# Redex Gradle Plugin
+# Gradle Plugin for Redex
 
 
 ## Prerequisite
 
-- [redex](https://github.com/facebook/redex)
+- [Redex](https://github.com/facebook/redex)
+
 
 
 ## Usage
@@ -13,24 +14,28 @@ This library has two commands.
 
 ### assembleRedex${variant.name}
 
-For example, application variant is debug.
-
-First, run assembleDebug, create a debug.apk. Finally, run `redex debug.apk -o redex-debug.apk`, create a redex-debug.apk.
+Assembles a $variant builds and redex.
 
 
 ### installRedex${variant.name}
 
-For example, application variant is release.
-
-First, run assembleRelease, create a release.apk. Second, run `redex release.apk -o redex-release.apk --sign ...`, create a redex-release.apk.
-Finally, run `adb install redex-release.apk`, install redex-release.apk on connected devices.
+Installs a $variant builds.
 
 
-## customize
+## settings
 
 As necessary edits your build.gradle.
 
 ```gradle
+buildscript {
+    dependencies {
+        classpath "com.github.satoshun.redex.gradle:redex-gradle-plugin:0.2.0"
+    }
+}
+
+apply plugin: 'redex'
+
+
 redex {
     storePath "your keystore"
     storePassword "your storePassword"
@@ -39,6 +44,11 @@ redex {
 }
 ```
 
+
+## TODO
+
+- corresponds more Redex options.
+- corresponds vairants
 
 
 ## License

@@ -1,13 +1,13 @@
 buildscript {
     repositories {
         // for debug
-        flatDir dirs: "../build/libs"
+        // flatDir dirs: "../build/libs"
         // maven { url "https://oss.sonatype.org/content/repositories/snapshots/"}
     }
 
     dependencies {
         classpath 'com.android.tools.build:gradle:2.0.0'
-        classpath "com.github.satoshun.redex.gradle:redex-gradle-plugin:0.0.8-SNAPSHOT"
+        classpath "com.github.satoshun.redex.gradle:redex-gradle-plugin:0.2.0"
     }
 }
 

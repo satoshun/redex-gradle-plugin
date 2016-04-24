@@ -12,7 +12,7 @@ apply plugin: 'nexus'
 
 
 group = 'com.github.satoshun.redex.gradle'
-version = '0.1.30-SNAPSHOT'
+version = '0.2.0'
 
 
 repositories {
